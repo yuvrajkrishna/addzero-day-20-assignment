@@ -27,6 +27,15 @@ public class arraydst {
         return ++index;
     }
 
+
+    public static void print (int arr [] , int index ){
+        System.out.print('[' + " " );
+        for(int i = 0 ; i < index ; i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.print(" " + "]");
+
+    }
     public static void main(String[] args) {
 
         int arr[] = new int[10];
@@ -43,6 +52,6 @@ public class arraydst {
         index = insert(arr,index,80);
         index = insert(arr,index,70);
         index = insert(arr, index, 60);
-        System.out.println(Arrays.toString(arr));
+        print(arr, index);
     }
 }
