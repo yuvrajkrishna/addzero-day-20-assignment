@@ -29,13 +29,76 @@ public class arraydst {
 
 
     public static void print (int arr [] , int index ){
-        System.out.print('[' + " " );
+       
         for(int i = 0 ; i < index ; i++){
             System.out.print(arr[i]+" ");
         }
-        System.out.print(" " + "]");
-
+       System.out.println();
     }
+
+    public static int search (int arr[] , int index,int target){
+        if(index == 0){
+            System.out.println("Array has no value to Search");
+            return -1;
+        }
+        int start = 0 ;
+        int end = index-1;
+        while(start <= end){
+            int mid = (start + end)/2;
+            if(arr[mid] == target){
+                return mid;
+            }
+            else if(arr[mid] < target){
+                start = mid+1;
+            }
+            else{
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+   public static int delete(int arr[], int index, int target) {
+
+    if (index == 0) {
+        System.out.println("Array is empty");
+        return index;
+    }
+
+    // Binary Search
+    int start = 0;
+    int end = index - 1;
+    int position = -1;
+
+    while (start <= end) {
+
+        int mid = start + (end - start) / 2;
+
+        if (arr[mid] == target) {
+            position = mid;
+            break;
+        }
+        else if (arr[mid] < target) {
+            start = mid + 1;
+        }
+        else {
+            end = mid - 1;
+        }
+    }
+
+    // Target not found
+    if (position == -1) {
+        System.out.println("Value not found");
+        return index;
+    }
+
+    // Left shift
+    for (int i = position; i < index - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    return index - 1;
+}
     public static void main(String[] args) {
 
         int arr[] = new int[10];
@@ -52,6 +115,9 @@ public class arraydst {
         index = insert(arr,index,80);
         index = insert(arr,index,70);
         index = insert(arr, index, 60);
+        print(arr, index);
+        System.out.println(search(arr, index, 100));
+        index = delete(arr, index, 20);
         print(arr, index);
     }
 }
