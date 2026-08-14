@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class lcs_prefix{
     public static void main(String[] args) {
         int nums [] = {-4,2,-6,8,7,-5};
@@ -8,6 +10,7 @@ public class lcs_prefix{
         for (int i = 0; i < n; i++) {
             prefix[i + 1] = prefix[i] + nums[i];
         }
+        System.out.println(Arrays.toString(prefix));
 
         int maxSum = Integer.MIN_VALUE;
 
