@@ -58,56 +58,63 @@ public class arraydst {
         return -1;
     }
 
-   public static int delete(int arr[], int index, int target) {
+    public static int delete(int arr[], int index, int target) {
 
-    if (index == 0) {
-        System.out.println("Array is empty");
-        return index;
-    }
+            if (index == 0) {
+                System.out.println("Array is empty");
+                return index;
+            }
 
-    int start = 0;
-    int end = index - 1;
-    int position = -1;
+            int start = 0;
+            int end = index - 1;
+            int position = -1;
 
-    while (start <= end) {
+            while (start <= end) {
 
-        int mid = start + (end - start) / 2;
+                int mid = start + (end - start) / 2;
 
-        if (arr[mid] == target) {
-            position = mid;
-            break;
+                if (arr[mid] == target) {
+                    position = mid;
+                    break;
+                }
+                else if (arr[mid] < target) {
+                    start = mid + 1;
+                }
+                else {
+                    end = mid - 1;
+                }
+            }
+
+
+            if (position == -1) {
+                System.out.println("Value not found");
+                return index;
+            }
+
+
+            for (int i = position; i < index - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+
+            return index - 1;
         }
-        else if (arr[mid] < target) {
-            start = mid + 1;
+
+    public static void update (int arr[] , int index , int oldValue ,int NewValue){
+        if (index == 0) {
+            System.out.println("Array is empty");
+            return;
         }
-        else {
-            end = mid - 1;
+
+        index = delete(arr, index, oldValue);
+        index = insert(arr, index, NewValue);
+    }
+    
+    public static boolean isEmpty(int arr[],int index){
+        if(index == 0){
+            return true;
         }
+        return false;
     }
-
-
-    if (position == -1) {
-        System.out.println("Value not found");
-        return index;
-    }
-
-
-    for (int i = position; i < index - 1; i++) {
-        arr[i] = arr[i + 1];
-    }
-
-    return index - 1;
-}
-
-public static void update (int arr[] , int index , int oldValue ,int NewValue){
-    if (index == 0) {
-        System.out.println("Array is empty");
-        return;
-    }
-
-    index = delete(arr, index, oldValue);
-    index = insert(arr, index, NewValue);
-}
 
     public static void main(String[] args) {
 
@@ -131,5 +138,6 @@ public static void update (int arr[] , int index , int oldValue ,int NewValue){
         print(arr, index);
         update(arr, index, 30, 20);
         print(arr,index);
+       System.out.println( isEmpty(arr, index));
     }
 }
