@@ -65,7 +65,6 @@ public class arraydst {
         return index;
     }
 
-    // Binary Search
     int start = 0;
     int end = index - 1;
     int position = -1;
@@ -86,19 +85,30 @@ public class arraydst {
         }
     }
 
-    // Target not found
+
     if (position == -1) {
         System.out.println("Value not found");
         return index;
     }
 
-    // Left shift
+
     for (int i = position; i < index - 1; i++) {
         arr[i] = arr[i + 1];
     }
 
     return index - 1;
 }
+
+public static void update (int arr[] , int index , int oldValue ,int NewValue){
+    if (index == 0) {
+        System.out.println("Array is empty");
+        return;
+    }
+
+    index = delete(arr, index, oldValue);
+    index = insert(arr, index, NewValue);
+}
+
     public static void main(String[] args) {
 
         int arr[] = new int[10];
@@ -119,5 +129,7 @@ public class arraydst {
         System.out.println(search(arr, index, 100));
         index = delete(arr, index, 20);
         print(arr, index);
+        update(arr, index, 30, 20);
+        print(arr,index);
     }
 }
